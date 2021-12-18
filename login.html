@@ -53,7 +53,7 @@
 
         }
 
-        button{
+        button {
             margin-top: 20px;
             text-shadow: 1px 1px 1px rgb(139, 102, 0);
             font-size: 20px;
@@ -97,28 +97,28 @@
 <script>
     document.querySelector("button").addEventListener("click", login);
 
-    var regData = JSON.parse(localStorage.getItem("userData"));
+    var regData = JSON.parse(localStorage.getItem("userData")) || [];
 
     function login(event) {
-           event.preventDefault();
+        event.preventDefault();
         var userEmail = document.querySelector("#email").value;
         var userMobile = document.querySelector("#mobile").value;
         var userPassword = document.querySelector("#pass").value;
 
 
-        if (userEmail === "admin" && userMobile == "123" && userPassword === "admin"){
+        if (userEmail === "admin" && userMobile == "123" && userPassword === "admin") {
             // console.log("admin pannel")
             window.location.href = "admin.html";
-        }else {
+        } else {
             for (var i = 0; i < regData.length; i++) {
                 if (regData[i].email == userEmail && regData[i].mobile == userMobile && regData[i].password == userPassword) {
-                    
+
                     window.location.href = "product.html";
                     alert("Login Successfully");
                     break;
-                   
+
                 }
-                else {
+                if (regData[i].email == userEmail && regData[i].mobile == userMobile && regData[i].password == userPassword){
                     alert("email password not mach");
                     break;
                 }

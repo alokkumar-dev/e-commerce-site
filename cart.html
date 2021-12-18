@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cart page</title>
+    <style>
+        .container {
+            display: flex;
+            width: 90%;
+            margin: auto;
+        }
+
+        .container>div {
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            margin: 10px;
+        }
+
+        .container>div>div {
+            height: 250px;
+            width: 200px;
+        }
+
+        img {
+            height: 100%;
+            width: 100%;
+        }
+
+        .header {
+            height: 70px;
+            margin: auto;
+            display: flex;
+            justify-content: space-around;
+            background-color: rgb(85, 201, 195);
+        }
+
+        .header>h1 {
+            width: 60%;
+        }
+
+        #discount {
+            margin: 5px;
+        }
+
+        label {
+
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 130px;
+            height: 22px;
+            background-color: rgb(123, 241, 236);
+            border: 1px solid rgb(1, 82, 85);
+            font-size: 18px;
+            border-radius: 5px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Cart page</h1>
+        <h2>items- </h2>
+        <h2 id="itemNum"></h2>
+        <h2 id="totalPrice"></h2>
+        <div id="discount">
+            <label for="key">check discount</label><br>
+            <input type="text" value="" id="key" />
+            <button onclick="checkDisc()">Ok</button>
+        </div>
+    </div>
+
+
+
+    <div class="container"></div>
+</body>
+
+</html>
+<script>
+    var product = JSON.parse(localStorage.getItem("cartData"));
+
+    document.querySelector("#itemNum").textContent = product.length;
+
+    var total = 0;
+    for (var i = 0; i < product.length; i++) {
+        total += Number(product[i].productPrice);
+
+    }
+    document.querySelector("#totalPrice").textContent = "Total Price -"+total;
+
+    var arr = JSON.parse(localStorage.getItem(""));
+
+    displayProducts(product);
+    function displayProducts(product) {
+
+        product.map(function (event) {
+            var div = document.createElement("div");
+            var image = document.createElement("img");
+            var imgDiv = document.createElement("div");
+            var name = document.createElement("h2");
+            var price = document.createElement("h3");
+
+            image.setAttribute("src", event.productImage);
+            name.textContent = event.productName;
+            price.textContent = event.productPrice;
+
+            imgDiv.append(image)
+
+            div.append(imgDiv, name, price);
+
+            document.querySelector(".container").append(div);
+        });
+    }
+</script>

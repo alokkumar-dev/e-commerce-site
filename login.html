@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login page</title>
+    <style>
+        .container {
+            margin: auto;
+        }
+
+        .imageDiv {
+            height: 100px;
+            width: 200px;
+            margin: auto;
+        }
+
+        img {
+            height: 100%;
+            width: 100%;
+        }
+
+        .formDiv {
+
+            width: 300px;
+            font-size: 18px;
+            margin: auto;
+            padding: 30px;
+            font-family: arial, sans-serif;
+            border-radius: 5px;
+            border: 1px solid #666666;
+        }
+
+        #header {
+            margin-top: 0;
+            font-size: 28px;
+            line-height: 34px;
+            color: #111;
+
+        }
+
+        input {
+            width: 290px;
+            height: 30px;
+            font-size: 16px;
+
+        }
+
+        label {
+            line-height: 40px;
+
+        }
+
+        button{
+            margin-top: 20px;
+            text-shadow: 1px 1px 1px rgb(139, 102, 0);
+            font-size: 20px;
+            background-color: #f1bf40;
+            border: 1px solid rgb(80, 79, 43);
+            border-radius: 2px;
+            width: 300px;
+            height: 35px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="imageDiv">
+            <img src="http://media.corporate-ir.net/media_files/IROL/17/176060/Oct18/Amazon%20logo.PNG"
+                alt="amazon logo">
+        </div>
+        <div class="formDiv">
+            <form action="" id="form">
+                <h1 id="header">Login account</h1>
+                <label for="email">Your email</label><br>
+                <input type="text" id="email" placeholder="enter your email id"><br>
+
+                <label for="mobile">Mobile</label><br>
+                <input type="mobile" id="mobile" placeholder="enter mobile number"><br>
+
+                <label for="pass">Password</label><br>
+                <input type="text" id="pass" placeholder="enter password"><br>
+                <button>Login</button>
+            </form>
+
+
+
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    document.querySelector("button").addEventListener("click", login);
+
+    var regData = JSON.parse(localStorage.getItem("userData"));
+
+    function login(event) {
+           event.preventDefault();
+        var userEmail = document.querySelector("#email").value;
+        var userMobile = document.querySelector("#mobile").value;
+        var userPassword = document.querySelector("#pass").value;
+
+
+        if (userEmail === "admin" && userMobile == "123" && userPassword === "admin"){
+            // console.log("admin pannel")
+            window.location.href = "admin.html";
+        }else {
+            for (var i = 0; i < regData.length; i++) {
+                if (regData[i].email == userEmail && regData[i].mobile == userMobile && regData[i].password == userPassword) {
+                    
+                    window.location.href = "product.html";
+                    alert("Login Successfully");
+                    break;
+                   
+                }
+                else {
+                    alert("email password not mach");
+                    break;
+                }
+            }
+        }
+
+    }
+
+</script>

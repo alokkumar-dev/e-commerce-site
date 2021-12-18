@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sign up</title>
+    <style>
+        .container {
+            margin: auto;
+        }
+
+        .imageDiv {
+            height: 100px;
+            width: 200px;
+            margin: auto;
+        }
+
+        img {
+            height: 100%;
+            width: 100%;
+        }
+
+        .formDiv {
+
+            width: 300px;
+            font-size: 18px;
+            margin: auto;
+            padding: 30px;
+            font-family: arial, sans-serif;
+            border-radius: 5px;
+            border: 1px solid #666666;
+        }
+
+        #header {
+            margin-top: 0;
+            font-size: 28px;
+            line-height: 34px;
+            color: #111;
+
+        }
+
+        input {
+            width: 290px;
+            height: 30px;
+            font-size: 16px;
+
+        }
+
+        label {
+            line-height: 40px;
+
+        }
+
+        #submit {
+            text-shadow: 1px 1px 1px rgb(139, 102, 0);
+            margin-top: 10px;
+            font-size: 20px;
+            background-color: #f1bf40;
+            border: 1px solid rgb(80, 79, 43);
+            width: 300px;
+            height: 35px;
+            border-radius: 2px;
+        }
+
+        button {
+            text-shadow: 1px 1px 1px rgb(139, 102, 0);
+            font-size: 20px;
+            background-color: #f1bf40;
+            border: 1px solid rgb(80, 79, 43);
+            border-radius: 2px;
+            padding: 5px 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="imageDiv">
+            <img src="http://media.corporate-ir.net/media_files/IROL/17/176060/Oct18/Amazon%20logo.PNG"
+                alt="amazon logo">
+        </div>
+        <div class="formDiv">
+            <form action="" id="form">
+                <h1 id="header">Create account</h1>
+                <label for="email">Your email</label><br>
+                <input type="te" id="email" placeholder="enter your email id"><br>
+
+                <label for="mobile">Mobile</label><br>
+                <input type="mobile" id="mobile" placeholder="enter mobile number"><br>
+
+                <label for="pass">Password</label><br>
+                <input type="text" id="pass" placeholder="enter password"><br>
+
+                <input id="submit" type="submit" value="Submit">
+                <p>if you signUp, your can login here</p>
+            </form>
+            <button>Login</button>
+
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    document.querySelector("#form").addEventListener("submit", signUp);
+
+    var arr = JSON.parse(localStorage.getItem("userData")) || [];
+    function signUp() {
+        var email = document.querySelector("#email").value;
+        var mobile = document.querySelector("#mobile").value;
+        var password = document.querySelector("#pass").value;
+
+        var userObj = {
+            email: email,
+            mobile: mobile,
+            password: password
+        };
+
+        arr.push(userObj);
+        localStorage.setItem("userData", JSON.stringify(arr));
+        alert("your account created successfully");
+
+    }
+
+    document.querySelector("button").addEventListener("click", login);
+
+    function login() {
+        window.location.href = "login.html";
+
+    }
+
+</script>

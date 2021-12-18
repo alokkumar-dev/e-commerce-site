@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin pannel</title>
+    <style>
+        .container {
+            margin: auto;
+        }
+
+        .imageDiv {
+            height: 100px;
+            width: 200px;
+            margin: auto;
+        }
+
+        img {
+            height: 100%;
+            width: 100%;
+        }
+
+        .formDiv {
+
+            width: 300px;
+            font-size: 18px;
+            margin: auto;
+            padding: 30px;
+            font-family: arial, sans-serif;
+            border-radius: 5px;
+            border: 1px solid #666666;
+        }
+
+        #header {
+            margin-top: 0;
+            font-size: 28px;
+            line-height: 34px;
+            color: #111;
+
+        }
+
+        input {
+            width: 290px;
+            height: 30px;
+            font-size: 16px;
+
+        }
+
+        label {
+            line-height: 40px;
+
+        }
+
+        #add{
+            margin-top: 20px;
+            text-shadow: 1px 1px 1px rgb(139, 102, 0);
+            font-size: 20px;
+            background-color: #f1bf40;
+            border: 1px solid rgb(80, 79, 43);
+            border-radius: 2px;
+            width: 300px;
+            height: 35px;
+            margin-bottom: 10px;
+
+        }
+        a{
+            font-size: 17px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="imageDiv">
+            <img src="http://media.corporate-ir.net/media_files/IROL/17/176060/Oct18/Amazon%20logo.PNG"
+                alt="amazon logo">
+        </div>
+        <div class="formDiv">
+            <form action="" id="form">
+                <h1 id="header">Add Product</h1>
+                <label for="name">Product Name</label><br>
+                <input type="text" id="name" placeholder="Enter product name"><br>
+
+                <label for="price">Product Price</label><br>
+                <input type="number" id="price" placeholder="Enter Product Price"><br>
+
+                <label for="image">Image URL</label><br>
+                <input type="text" id="image" placeholder="Enter image URL"><br>
+                <input type="submit" id="add" value="Add">
+            </form>
+            <a href="product.html">Go to Products page</a>
+
+
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    document.querySelector("#form").addEventListener("submit", addProduct);
+    
+    var store = JSON.parse(localStorage.getItem("ProductDetails")) || [] ;
+
+    function addProduct(){
+        var name = document.querySelector("#name").value;
+        var price = document.querySelector("#price").value;
+        var image = document.querySelector("#image").value;
+
+        var productObj = {
+            productName : name,
+            productPrice : price,
+            productImage : image
+        }
+        store.push(productObj);
+
+        localStorage.setItem("ProductDetails", JSON.stringify(store));
+    }
+
+
+</script>
